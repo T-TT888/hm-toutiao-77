@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <div class="container">
+      <p>哈哈哈，我是login页面</p>
+    </div>
   </div>
 </template>
 
