@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import store from '@/store'
 export default {
   data () {
     const checkMobile = (rule, value, callback) => {
@@ -80,7 +81,7 @@ export default {
               this.loginForm
             )
             .then(res => {
-              console.log(res.data)
+              store.setUser(res.data.data)
               this.$router.push('/')
             })
             .catch(() => {
