@@ -44,35 +44,54 @@
     <el-header>
         <span class="el-icon-s-fold" @click="toggleMenu()"></span>
         <span class="test">江苏传智播客科技教育有限公司</span>
-<el-dropdown class="my-down">
+<el-dropdown class="my-down" @command="changeMenu">
   <span class="el-dropdown-link">
-    <img src="../../assets/images/avatar.jpg" alt="">
-    用户名称
+    <img :src="photo" alt="">
+    {{name}}
     <i class="el-icon-arrow-down el-icon--right"></i>
   </span>
   <el-dropdown-menu slot="dropdown">
-    <el-dropdown-item>个人设置</el-dropdown-item>
-    <el-dropdown-item>退出登陆</el-dropdown-item>
+    <el-dropdown-item icon="el-icon-setting" command="setting">个人设置</el-dropdown-item>
+    <el-dropdown-item icon="el-icon-unlock" command="logout">退出登陆</el-dropdown-item>
   </el-dropdown-menu>
 </el-dropdown>
     </el-header>
     <el-main>
-      <router-view>132</router-view>
+      <router-view></router-view>
     </el-main>
   </el-container>
 </el-container>
 </template>
 
 <script>
+import store from '@/store'
 export default {
   data () {
     return {
-      isCollapse: false
+      isCollapse: false,
+      name: '',
+      photo: ''
     }
+  },
+  created () {
+    const user = store.getUser()
+    this.name = user.name
+    this.photo = user.photo
   },
   methods: {
     toggleMenu () {
       this.isCollapse = !this.isCollapse
+    },
+    setting () {
+      // this.$router.push({ name: 'setting' })
+      this.$router.push('/setting')
+    },
+    logout () {
+      store.clearUser()
+      this.$router.push({ name: 'login' })
+    },
+    changeMenu (myType) {
+      this[myType]()
     }
   }
 }
