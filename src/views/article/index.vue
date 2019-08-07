@@ -3,10 +3,7 @@
   <div class="container">
     <el-card>
       <div slot="header" >
-         <el-breadcrumb separator-class="el-icon-arrow-right">
-         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-         <el-breadcrumb-item>内容管理</el-breadcrumb-item>
-         </el-breadcrumb>
+         <my-bread>内容管理</my-bread>
       </div>
        <el-form label-width="80px" size="small">
          <el-form-item label="状态">
@@ -42,7 +39,7 @@
          </el-form-item>
        </el-form>
     </el-card>
-    <!-- <el-card>
+    <el-card>
       <div slot="header">
           根据数据筛选条件共查询到0条结果
       </div>
@@ -56,15 +53,12 @@
           :total="1000">
         </el-pagination>
       </div>
-    </el-card> -->
-   <my-test>content</my-test>
+    </el-card>
   </div>
 </template>
 
 <script>
-import MyTest from '@/components/my-test'
 export default {
-  components: { MyTest },
   data () {
     return {
       reqParams: {
@@ -72,8 +66,8 @@ export default {
         channel_id: null
       },
       channelOptions: [{ value: 1, label: 'json' }],
-      dataArr: []
-      // articles: [{ img: '真好' }]
+      dataArr: [],
+      articles: [{ img: '真好' }]
     }
   }
 }
